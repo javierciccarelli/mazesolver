@@ -3,7 +3,7 @@
  */
 public enum MazeElement {
 
-    WALL, SPACE, START, EXIT;
+    WALL, SPACE, START, EXIT
 
 
 }
