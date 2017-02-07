@@ -1,5 +1,7 @@
+package com.pnbparibas.test.mazesolver.domain;
+
 /**
- * Created by javier on 04/02/17.
+ * Created by javier.
  */
 public class Position {
     private int x;
