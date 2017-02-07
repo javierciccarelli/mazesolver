@@ -23,16 +23,12 @@ public class MazeSolver {
         return solutions.size() > 0;
     }
 
-    public Maze getSolvedMaze() {
-        return maze.addSolution(solutions.get(0));
-    }
-
-    public List<Set<Position>> getSolutions() {
-        return this.solutions;
-    }
-
     private List<Set<Position>> findAllPaths(Position startPosition, Set<Position> path) {
         List<Set<Position>> result = new ArrayList<>();
+
+        if (alreadyBeenInPosition(startPosition, path))
+            return result;
+
         Set<Position> currentPath = new LinkedHashSet<>(path);
         currentPath.add(startPosition);
 
@@ -41,16 +37,17 @@ public class MazeSolver {
             return result;
         }
 
-        if (alreadyBeenHere(startPosition, path))
-            return result;
-
         maze.findPossibleNextSteps(startPosition)
                 .forEach(step -> result.addAll(findAllPaths(step, currentPath)));
 
         return result;
     }
 
-    private boolean alreadyBeenHere(Position startPosition, Set<Position> path) {
+    public Maze getSolvedMaze() { return maze.addSolution(solutions.get(0)); }
+
+    public List<Set<Position>> getSolutions() { return this.solutions; }
+
+    private boolean alreadyBeenInPosition(Position startPosition, Set<Position> path) {
         return path.contains(startPosition);
     }
 }

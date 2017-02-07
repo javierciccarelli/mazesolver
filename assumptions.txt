@@ -1,0 +1,4 @@
+- The maze is always a square (not tested otherwise, maybe it fails to print).
+- Used simple recursive algorithm, could be made more efficient but had to adapt to time constraints. If the maze is big enough, it might overflow the stack.
+- Corner cases not properly tested as per time constraints.
+- Assumed there was no need to execute it from command line.

@@ -7,7 +7,7 @@ import com.pnbparibas.test.mazesolver.domain.MazeSolver;
 import java.nio.file.Paths;
 
 /**
- * Created by 43641457 on 07/02/2017.
+ * Created by javier.
  */
 public class Application {
 

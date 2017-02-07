@@ -1,4 +1,4 @@
-package com.pnbparibas.test.mazesolver;
+package com.pnbparibas.test.mazesolver.domain;
 
 import com.pnbparibas.test.mazesolver.domain.*;
 import org.junit.Test;

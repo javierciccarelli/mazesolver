@@ -9,11 +9,7 @@ public enum MazeElement {
 
     public char printChar;
 
-    MazeElement(char printChar) {
-        this.printChar = printChar;
-    }
+    MazeElement(char printChar) { this.printChar = printChar; }
 
-    public char getPrintChar() {
-        return printChar;
-    }
+    public char getPrintChar() { return printChar; }
 }

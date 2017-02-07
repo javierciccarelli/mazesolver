@@ -27,14 +27,12 @@ public class MazeFactory {
     }
 
     public Maze createMaze(Path filePath) {
-
         Maze maze = new Maze();
 
         AtomicInteger index = new AtomicInteger();
 
         try(Stream<String> stream = Files.lines(filePath)) {
             stream.forEach(line -> addLineToMaze(maze, index.getAndIncrement(), line));
-
         } catch (IOException e) {
             throw new RuntimeException("Error reading the file", e);
         }
@@ -44,7 +42,10 @@ public class MazeFactory {
 
     private void addLineToMaze(Maze maze, int fileLine, String line) {
         IntStream.range(0, line.length())
-                .forEach(i -> maze.addElement(new Position(i, fileLine), characterMapping.get(line.charAt(i))));
+                .forEach(i -> maze.addElement(i, fileLine, elementFor(line.charAt(i))));
+    }
 
+    private MazeElement elementFor(char c) {
+        return characterMapping.get(c);
     }
 }

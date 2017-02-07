@@ -34,30 +34,25 @@ public class Maze {
                 .collect(Collectors.toList());
     }
 
+    public Maze addSolution(Set<Position> positions) {
+        Maze newMaze = new Maze();
+        matrix.forEach((pos, element) -> newMaze.addElement(pos, element));
+        positions.stream()
+                .filter(pos -> !isStart(pos) && !isFinish(pos))
+                .forEach(pos -> newMaze.addElement(pos, MazeElement.PATH));
+
+        return newMaze;
+    }
+
     private boolean isOutOfBounds(Position p) {
         return p.getY() > maxY || p.getY() < minY || p.getX() > maxX || p.getX() < minX;
     }
 
-    public Position getStartPosition() {
-        return startPosition;
-    }
-
-    public boolean isElement(Position pos, MazeElement element) {
-        return matrix.get(pos) == element;
-    }
-
-    public boolean isFinish(Position pos) {
-        return isElement(pos, MazeElement.EXIT);
-    }
-
-    public boolean isStart(Position pos) {
-        return isElement(pos, MazeElement.START);
-    }
-
-
-    public boolean isWall(Position pos) {
-        return isElement(pos, MazeElement.WALL);
-    }
+    public Position getStartPosition() { return startPosition; }
+    public boolean isElement(Position pos, MazeElement element) { return matrix.get(pos) == element; }
+    public boolean isFinish(Position pos) { return isElement(pos, MazeElement.EXIT); }
+    public boolean isStart(Position pos) { return isElement(pos, MazeElement.START); }
+    public boolean isWall(Position pos) { return isElement(pos, MazeElement.WALL); }
 
     @Override
     public String toString() {
@@ -70,20 +65,8 @@ public class Maze {
     private String printLine(int y) {
         IntStream xStream = IntStream.range(0, maxX + 1);
         return xStream.mapToObj(x -> printCharacter(x, y)).collect(Collectors.joining());
-
     }
 
-    private String printCharacter(int x, int y) {
-        return String.valueOf(matrix.get(new Position(x, y)).printChar);
-    }
+    private String printCharacter(int x, int y) { return String.valueOf(matrix.get(new Position(x, y)).printChar); }
 
-    public Maze addSolution(Set<Position> positions) {
-        Maze newMaze = new Maze();
-        matrix.forEach((pos, element) -> newMaze.addElement(pos, element));
-        positions.stream()
-                .filter(pos -> !isStart(pos) && !isFinish(pos))
-                .forEach(pos -> newMaze.addElement(pos, MazeElement.PATH));
-
-        return newMaze;
-    }
 }

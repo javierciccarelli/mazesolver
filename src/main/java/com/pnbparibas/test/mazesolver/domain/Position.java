@@ -33,7 +33,6 @@ public class Position {
 
         if (x != position.x) return false;
         return y == position.y;
-
     }
 
     @Override
